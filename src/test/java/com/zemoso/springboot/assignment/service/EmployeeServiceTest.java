@@ -86,4 +86,41 @@ class EmployeeServiceTest {
         // Verify that the repository method was called
         verify(employeeRepository, times(1)).findById(id);
     }
+
+    @Test
+    void saveEmployee_ValidInput_ReturnsSavedEmployeeDTO() {
+        // Arrange
+        EmployeeDTO employeeDTO = new EmployeeDTO(null, "John", "Doe", "john.doe@example.com", 1L);
+        Department department = new Department();
+        Employee savedEmployee = new Employee(1L, "John", "Doe", "john.doe@example.com", department);
+        EmployeeDTO expectedDTO = new EmployeeDTO(1L, "John", "Doe", "john.doe@example.com", 1L);
+
+        when(departmentRepository.findById(1L)).thenReturn(Optional.of(department));
+        when(employeeRepository.save(any(Employee.class))).thenReturn(savedEmployee);
+
+        // Act
+        EmployeeDTO result = employeeService.saveEmployee(employeeDTO);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(expectedDTO, result);
+        // Verify that the repository methods were called
+        verify(departmentRepository, times(1)).findById(1L);
+        verify(employeeRepository, times(1)).save(any(Employee.class));
+    }
+
+    @Test
+    void saveEmployee_InvalidDepartmentId_ThrowsNoSuchElementException() {
+        // Arrange
+        EmployeeDTO employeeDTO = new EmployeeDTO(null, "John", "Doe", "john.doe@example.com", 1L);
+
+        when(departmentRepository.findById(1L)).thenReturn(Optional.empty());
+
+        // Act and Assert
+        assertThrows(NoSuchElementException.class, () -> employeeService.saveEmployee(employeeDTO));
+        // Verify that the repository method was called
+        verify(departmentRepository, times(1)).findById(1L);
+        // Verify that the employeeRepository.save() method was not called
+        verify(employeeRepository, never()).save(any(Employee.class));
+    }
 }

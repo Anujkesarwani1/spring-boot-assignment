@@ -91,4 +91,31 @@ public class EmployeeService {
         employee.setEmail(employeeDTO.getEmail());
         return employee;
     }
+
+    // For Testing
+    public EmployeeDTO saveEmployee(EmployeeDTO employeeDTO) {
+        Long departmentId = employeeDTO.getDepartmentId();
+        Optional<Department> departmentOptional = departmentRepository.findById(departmentId);
+
+        if (departmentOptional.isEmpty()) {
+            throw new NoSuchElementException("Department not found with id: " + departmentId);
+        }
+
+        Department department = departmentOptional.get();
+        Employee employee = new Employee();
+        employee.setFirstName(employeeDTO.getFirstName());
+        employee.setLastName(employeeDTO.getLastName());
+        employee.setEmail(employeeDTO.getEmail());
+        employee.setDepartment(department);
+
+        Employee savedEmployee = employeeRepository.save(employee);
+
+        return new EmployeeDTO(
+                savedEmployee.getId(),
+                savedEmployee.getFirstName(),
+                savedEmployee.getLastName(),
+                savedEmployee.getEmail(),
+                departmentId
+        );
+    }
 }
