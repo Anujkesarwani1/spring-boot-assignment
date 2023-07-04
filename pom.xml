@@ -15,10 +15,11 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
-		<spring-cloud.version>2021.0.7</spring-cloud.version>
-		<sonar.projectKey>spring-boot-assignment1-</sonar.projectKey>
+		<spring-cloud.version>2021.0.3</spring-cloud.version>
 		<sonar.organization>spring-boot-assignment1</sonar.organization>
   		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<spring-cloud.version>2022.0.3</spring-cloud.version>
+		<sonar.coverage.exclusions>**/Application/*.java</sonar.coverage.exclusions>
 
 		<!--  JaCoCo Properties  -->
 		<jacoco.version>0.8.8</jacoco.version>
