@@ -134,12 +134,6 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.7</version>
-				<configuration>
-					<excludes>
-						<exclude>com/zemoso/springboot/assignment/Application.class</exclude>
-						<exclude>com/zemoso/springboot/assignment/config/SecurityConfig.class</exclude>
-					</excludes>
-				</configuration>
 				<executions>
 					<execution>
 						<id>prepare-agent</id>
