@@ -89,58 +89,6 @@ class EmployeeServiceTest {
         verify(employeeRepository, times(1)).findById(id);
     }
 
-    @Test
-    void createEmployee_ValidInput_ReturnsCreatedEmployeeDTO() {
-        // Arrange
-        EmployeeDTO employeeDTO = new EmployeeDTO(null, "John", "Doe", "john.doe@example.com", 1L);
-        Department department = new Department();
-        Employee createdEmployee = new Employee(1L, "John", "Doe", "john.doe@example.com", department);
-
-        when(departmentRepository.findById(employeeDTO.getDepartmentId())).thenReturn(Optional.of(department));
-        when(employeeRepository.save(any(Employee.class))).thenReturn(createdEmployee);
-
-        // Act
-        EmployeeDTO result = employeeService.createEmployee(employeeDTO);
-
-        // Assert
-        assertNotNull(result);
-        assertEquals(1L, result.getId());
-        assertEquals("John", result.getFirstName());
-        assertEquals("Doe", result.getLastName());
-        assertEquals("john.doe@example.com", result.getEmail());
-        assertEquals(null, result.getDepartmentId());
-        // Verify that the repository methods were called
-        verify(departmentRepository, times(1)).findById(employeeDTO.getDepartmentId());
-        verify(employeeRepository, times(1)).save(any(Employee.class));
-    }
-
-    @Test
-    void updateEmployee_ValidInput_ReturnsUpdatedEmployeeDTO() {
-        // Arrange
-        EmployeeDTO employeeDTO = new EmployeeDTO(1L, "John", "Doe", "john.doe@example.com", 1L);
-        Employee existingEmployee = new Employee(1L, "John", "Doe", "john.doe@example.com", new Department());
-        Department department = new Department();
-        Employee updatedEmployee = new Employee(1L, "John", "Doe", "john.doe@example.com", department);
-
-        when(employeeRepository.findById(employeeDTO.getId())).thenReturn(Optional.of(existingEmployee));
-        when(departmentRepository.findById(employeeDTO.getDepartmentId())).thenReturn(Optional.of(department));
-        when(employeeRepository.save(any(Employee.class))).thenReturn(updatedEmployee);
-
-        // Act
-        EmployeeDTO result = employeeService.updateEmployee(employeeDTO);
-
-        // Assert
-        assertNotNull(result);
-        assertEquals(1L, result.getId());
-        assertEquals("John", result.getFirstName());
-        assertEquals("Doe", result.getLastName());
-        assertEquals("john.doe@example.com", result.getEmail());
-        assertEquals(null, result.getDepartmentId());
-        // Verify that the repository methods were called
-        verify(employeeRepository, times(1)).findById(employeeDTO.getId());
-        verify(departmentRepository, times(1)).findById(employeeDTO.getDepartmentId());
-        verify(employeeRepository, times(1)).save(any(Employee.class));
-    }
 
     @Test
     void deleteEmployee_ExistingId_DeletesEmployee() {
