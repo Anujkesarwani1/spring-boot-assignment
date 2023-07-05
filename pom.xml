@@ -29,7 +29,10 @@
 		<sonar.language>java</sonar.language>
 		<sonar.sources>src/main/java</sonar.sources>
 		<sonar.coverage.exclusions>
-			**/Application/*.java
+			**/Application.java,
+			**/dto/**,
+			**/entity/**,
+			**/config/**
 		</sonar.coverage.exclusions>
 
 	</properties>
