@@ -28,7 +28,9 @@
 		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
 		<sonar.language>java</sonar.language>
 		<sonar.sources>src/main/java</sonar.sources>
-		<sonar.coverage.exclusions>**/Application/*.java</sonar.coverage.exclusions>
+		<sonar.coverage.exclusions>
+			**/Application/*.java
+		</sonar.coverage.exclusions>
 
 	</properties>
 	<dependencies>
