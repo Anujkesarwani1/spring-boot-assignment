@@ -35,6 +35,8 @@ public class EmployeeService {
         return convertToDto(employee);
     }
 
+    private static final String EMPLOYEE_NOT_FOUND_MESSAGE = "Employee not found with id ";
+
     public EmployeeDTO createEmployee(EmployeeDTO employeeDTO) {
         Department department = departmentRepository.findById(employeeDTO.getDepartmentId())
                 .orElseThrow(() ->
@@ -54,14 +56,14 @@ public class EmployeeService {
     public EmployeeDTO updateEmployee(EmployeeDTO employeeDTO) {
         Employee existingEmployee = employeeRepository.findById(employeeDTO.getId())
                 .orElseThrow(()
-                -> new NoSuchElementException("Employee not found with id " + employeeDTO.getId()));
+                -> new NoSuchElementException(EMPLOYEE_NOT_FOUND_MESSAGE + employeeDTO.getId()));
 
         existingEmployee.setFirstName(employeeDTO.getFirstName());
         existingEmployee.setLastName(employeeDTO.getLastName());
         existingEmployee.setEmail(employeeDTO.getEmail());
         Department department = departmentRepository.findById(employeeDTO.getDepartmentId())
                 .orElseThrow(()
-                        -> new NoSuchElementException("Employee not found with id " + employeeDTO.getDepartmentId()));
+                        -> new NoSuchElementException(EMPLOYEE_NOT_FOUND_MESSAGE + employeeDTO.getDepartmentId()));
         existingEmployee.setDepartment(department);
 
         Employee employee = employeeRepository.save(existingEmployee);
