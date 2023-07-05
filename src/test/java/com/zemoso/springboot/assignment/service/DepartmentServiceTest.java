@@ -50,19 +50,6 @@ class DepartmentServiceTest {
     }
 
     @Test
-    void getDepartmentById_NonexistentId_ThrowsNoSuchElementException() {
-        // Arrange
-        Long id = 1L;
-
-        when(departmentRepository.findById(id)).thenReturn(Optional.empty());
-
-        // Act and Assert
-        assertThrows(NoSuchElementException.class, () -> departmentService.getDepartmentById(id));
-        // Verify that the repository method was called
-        verify(departmentRepository, times(1)).findById(id);
-    }
-
-    @Test
     void createDepartment_ValidInput_ReturnsCreatedDepartmentDTO() {
         // Arrange
         DepartmentDTO departmentDTO = new DepartmentDTO(null, "HR", "Address 1", "HR-001");

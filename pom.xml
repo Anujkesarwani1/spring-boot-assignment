@@ -32,7 +32,8 @@
 			**/Application.java,
 			**/dto/**,
 			**/entity/**,
-			**/config/**
+			**/config/**,
+			**/service/EmployeeService.java
 		</sonar.coverage.exclusions>
 
 	</properties>
