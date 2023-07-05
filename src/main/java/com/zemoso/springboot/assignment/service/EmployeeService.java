@@ -28,19 +28,21 @@ public class EmployeeService {
                 .toList();
     }
 
+    private static final String EMPLOYEE_NOT_FOUND_MESSAGE = "Employee not found with id ";
+
     public EmployeeDTO getEmployeeById(Long id) {
         Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Employee not found with id " + id));
+                .orElseThrow(() -> new NoSuchElementException(EMPLOYEE_NOT_FOUND_MESSAGE + id));
 
         return convertToDto(employee);
     }
 
-    private static final String EMPLOYEE_NOT_FOUND_MESSAGE = "Employee not found with id ";
+    private static final String DEPARTMENT_NOT_FOUND_MESSAGE = "Department not found with id ";
 
     public EmployeeDTO createEmployee(EmployeeDTO employeeDTO) {
         Department department = departmentRepository.findById(employeeDTO.getDepartmentId())
                 .orElseThrow(() ->
-                        new NoSuchElementException(("Department not found with id " +
+                        new NoSuchElementException((DEPARTMENT_NOT_FOUND_MESSAGE +
                                 employeeDTO.getDepartmentId())));
 
         Employee employee = convertToEntity(employeeDTO);
@@ -99,7 +101,7 @@ public class EmployeeService {
         Optional<Department> departmentOptional = departmentRepository.findById(departmentId);
 
         if (departmentOptional.isEmpty()) {
-            throw new NoSuchElementException("Department not found with id: " + departmentId);
+            throw new NoSuchElementException(DEPARTMENT_NOT_FOUND_MESSAGE + departmentId);
         }
 
         Department department = departmentOptional.get();

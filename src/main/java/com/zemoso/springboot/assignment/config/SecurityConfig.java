@@ -23,14 +23,14 @@ public class SecurityConfig {
      *             Don't forget to remove this deprecated code someday.
      */
     @Bean
-    @Deprecated(forRemoval = true)
+    @Deprecated
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http
-                .oauth2Login()
-                .and().logout()
+        http
+                .oauth2Login().and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .addLogoutHandler(logoutHandler)
-                .and()
-                .build();
+                .and();
+
+        return http.build();
     }
 }
