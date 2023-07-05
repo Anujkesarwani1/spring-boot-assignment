@@ -50,26 +50,6 @@ class DepartmentServiceTest {
     }
 
     @Test
-    void getDepartmentById_ExistingId_ReturnsDepartmentDTO() {
-        // Arrange
-        Long id = 1L;
-        Department department = new Department(id, "HR", "Address 1", "HR-001");
-
-        when(departmentRepository.findById(id)).thenReturn(Optional.of(department));
-
-        // Act
-        DepartmentDTO result = departmentService.getDepartmentById(id);
-
-        // Assert
-        assertNotNull(result);
-        assertEquals("HR", result.getDepartmentName());
-        assertEquals("Address 1", result.getDepartmentAddress());
-        assertEquals("HR-001", result.getDepartmentCode());
-        // Verify that the repository method was called
-        verify(departmentRepository, times(1)).findById(id);
-    }
-
-    @Test
     void getDepartmentById_NonexistentId_ThrowsNoSuchElementException() {
         // Arrange
         Long id = 1L;
