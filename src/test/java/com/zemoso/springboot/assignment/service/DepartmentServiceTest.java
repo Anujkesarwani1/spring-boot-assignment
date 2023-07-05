@@ -1,6 +1,6 @@
 package com.zemoso.springboot.assignment.service;
 
-import com.zemoso.springboot.assignment.DTO.DepartmentDTO;
+import com.zemoso.springboot.assignment.dto.DepartmentDTO;
 import com.zemoso.springboot.assignment.entity.Department;
 import com.zemoso.springboot.assignment.repository.DepartmentRepository;
 import org.junit.jupiter.api.BeforeEach;

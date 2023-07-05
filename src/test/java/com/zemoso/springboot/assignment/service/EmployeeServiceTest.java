@@ -1,6 +1,6 @@
 package com.zemoso.springboot.assignment.service;
 
-import com.zemoso.springboot.assignment.DTO.EmployeeDTO;
+import com.zemoso.springboot.assignment.dto.EmployeeDTO;
 import com.zemoso.springboot.assignment.entity.Department;
 import com.zemoso.springboot.assignment.entity.Employee;
 import com.zemoso.springboot.assignment.repository.DepartmentRepository;

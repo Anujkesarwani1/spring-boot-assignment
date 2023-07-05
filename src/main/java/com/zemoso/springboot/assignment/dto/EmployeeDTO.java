@@ -1,6 +1,5 @@
-package com.zemoso.springboot.assignment.DTO;
+package com.zemoso.springboot.assignment.dto;
 
-import com.zemoso.springboot.assignment.entity.Department;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

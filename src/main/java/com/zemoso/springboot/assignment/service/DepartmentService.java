@@ -1,6 +1,6 @@
 package com.zemoso.springboot.assignment.service;
 
-import com.zemoso.springboot.assignment.DTO.DepartmentDTO;
+import com.zemoso.springboot.assignment.dto.DepartmentDTO;
 import com.zemoso.springboot.assignment.entity.Department;
 import com.zemoso.springboot.assignment.repository.DepartmentRepository;
 import org.springframework.stereotype.Service;
@@ -21,13 +21,12 @@ public class DepartmentService {
         List<Department> departments = departmentRepository.findAll();
         return departments.stream()
                 .map(this::convertToDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public DepartmentDTO getDepartmentById(Long id) {
         Department department = departmentRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Department not found with id " + id));
-        System.out.println(department.toString());
         return convertToDto(department);
     }
 

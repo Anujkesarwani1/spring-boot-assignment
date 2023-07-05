@@ -20,6 +20,7 @@ public class SecurityConfig {
     }
 
     @Bean
+    @Deprecated(forRemoval = true)
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .oauth2Login()

@@ -1,6 +1,6 @@
 package com.zemoso.springboot.assignment.service;
 
-import com.zemoso.springboot.assignment.DTO.EmployeeDTO;
+import com.zemoso.springboot.assignment.dto.EmployeeDTO;
 import com.zemoso.springboot.assignment.entity.Department;
 import com.zemoso.springboot.assignment.entity.Employee;
 import com.zemoso.springboot.assignment.repository.DepartmentRepository;
@@ -25,7 +25,7 @@ public class EmployeeService {
         List<Employee> employees = employeeRepository.findAll();
         return employees.stream()
                 .map(this::convertToDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public EmployeeDTO getEmployeeById(Long id) {
@@ -48,7 +48,6 @@ public class EmployeeService {
         employee.setId(null);
 
         employee = employeeRepository.save(employee);
-        System.out.println(employee.toString());
         return convertToDto(employee);
     }
 

@@ -1,4 +1,4 @@
-package com.zemoso.springboot.assignment.DTO;
+package com.zemoso.springboot.assignment.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

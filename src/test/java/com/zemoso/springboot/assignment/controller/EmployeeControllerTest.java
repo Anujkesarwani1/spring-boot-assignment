@@ -1,6 +1,6 @@
 package com.zemoso.springboot.assignment.controller;
 
-import com.zemoso.springboot.assignment.DTO.EmployeeDTO;
+import com.zemoso.springboot.assignment.dto.EmployeeDTO;
 import com.zemoso.springboot.assignment.service.EmployeeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
